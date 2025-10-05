@@ -4,189 +4,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GiuMarket - Tu Tienda Online</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-        
-        body {
-            background: #f4f4f4;
-        }
-        
-        header {
-            background: #232f3e;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-        
-        .logo {
-            color: #ff9900;
-            font-size: 2rem;
-            font-weight: bold;
-        }
-        
-        nav {
-            background: #37475a;
-            padding: 1rem;
-        }
-        
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-        }
-        
-        nav a {
-            color: white;
-            text-decoration: none;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        
-        .products {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .product {
-            background: white;
-            padding: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        
-        .product img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            background: #f0f0f0;
-        }
-        
-        .product h3 {
-            margin: 1rem 0;
-            color: #333;
-        }
-        
-        .product .price {
-            color: #b12704;
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin: 0.5rem 0;
-        }
-        
-        .add-to-cart {
-            background: #ff9900;
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 1rem;
-        }
-        
-        .floating-btn {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: #ff9900;
-            color: white;
-            border: none;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 </head>
 <body>
+    <!-- Encabezado -->
     <header>
-        <div class="logo">GiuMarket</div>
+        <div class="header-container">
+            <div class="logo">🛍️ GiuMarket</div>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Buscar productos...">
+                <button id="search-button">🔍 Buscar</button>
+            </div>
+            <div class="user-options">
+                <a href="#" class="user-link">👤 Cuenta</a>
+                <a href="#" class="cart-btn" id="cart-button">🛒 Carrito (0) - $0.00</a>
+            </div>
+        </div>
     </header>
     
+    <!-- Navegación -->
     <nav>
-        <ul>
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Electrodomésticos</a></li>
-            <li><a href="#">Electrónicos</a></li>
-            <li><a href="#">Hogar</a></li>
-        </ul>
+        <div class="nav-container">
+            <ul class="categories">
+                <li><a href="#" onclick="filtrarProductos('todos')">🏠 Todos los productos</a></li>
+                <li><a href="#" onclick="filtrarProductos('electrodomesticos')">🔌 Electrodomésticos</a></li>
+                <li><a href="#" onclick="filtrarProductos('electronicos')">📱 Dispositivos Electrónicos</a></li>
+                <li><a href="#" onclick="filtrarProductos('hogar')">🏡 Hogar y Cocina</a></li>
+                <li><a href="#" onclick="filtrarProductos('moda')">👕 Moda y Accesorios</a></li>
+                <li><a href="#" onclick="filtrarProductos('deportes')">⚽ Deportes y Aire Libre</a></li>
+            </ul>
+        </div>
     </nav>
     
+    <!-- Contenido principal -->
     <div class="container">
-        <h1>Productos Destacados</h1>
-        <div class="products">
-            <div class="product">
-                <img src="https://via.placeholder.com/300x200/4A90E2/FFFFFF?text=Laptop" alt="Laptop">
-                <h3>Laptop Gaming Pro</h3>
-                <div class="price">$1299.99</div>
-                <button class="add-to-cart">Añadir al Carrito</button>
+        <div class="banner">
+            <div class="banner-content">
+                <h1>🎉 Ofertas Especiales</h1>
+                <p>Hasta 50% de Descuento en Productos Seleccionados</p>
+                <button class="banner-btn" onclick="filtrarProductos('todos')">Ver Ofertas</button>
             </div>
-            
-            <div class="product">
-                <img src="https://via.placeholder.com/300x200/50E3C2/FFFFFF?text=Smartphone" alt="Smartphone">
-                <h3>Smartphone Android</h3>
-                <div class="price">$499.99</div>
-                <button class="add-to-cart">Añadir al Carrito</button>
-            </div>
-            
-            <div class="product">
-                <img src="https://via.placeholder.com/300x200/9013FE/FFFFFF?text=Refrigerador" alt="Refrigerador">
-                <h3>Refrigerador Efficient</h3>
-                <div class="price">$899.99</div>
-                <button class="add-to-cart">Añadir al Carrito</button>
-            </div>
-            
-            <div class="product">
-                <img src="https://via.placeholder.com/300x200/F5A623/FFFFFF?text=Sofá" alt="Sofá">
-                <h3>Sofá Moderno</h3>
-                <div class="price">$599.99</div>
-                <button class="add-to-cart">Añadir al Carrito</button>
-            </div>
-            
-            <div class="product">
-                <img src="https://via.placeholder.com/300x200/B8E986/FFFFFF?text=Zapatos" alt="Zapatos">
-                <h3>Zapatos Running</h3>
-                <div class="price">$89.99</div>
-                <button class="add-to-cart">Añadir al Carrito</button>
-            </div>
-            
-            <div class="product">
-                <img src="https://via.placeholder.com/300x200/7ED321/FFFFFF?text=Tablet" alt="Tablet">
-                <h3>Tablet 10"</h3>
-                <div class="price">$329.99</div>
-                <button class="add-to-cart">Añadir al Carrito</button>
+        </div>
+        
+        <h2 class="section-title">⭐ Productos Destacados</h2>
+        
+        <!-- Contador de productos -->
+        <div class="products-counter">
+            <span id="products-count">Mostrando 9 productos</span>
+        </div>
+        
+        <div class="products" id="products-container">
+            <!-- Los productos se cargan dinámicamente con JavaScript -->
+        </div>
+        
+        <!-- Mensaje cuando no hay productos -->
+        <div id="no-products" class="no-products" style="display: none;">
+            <div class="no-products-content">
+                <h3>😔 No se encontraron productos</h3>
+                <p>Intenta con otros términos de búsqueda o revisa nuestras categorías</p>
+                <button onclick="filtrarProductos('todos')" class="cta-button">Ver Todos los Productos</button>
             </div>
         </div>
     </div>
 
-    <button class="floating-btn">+</button>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>🛍️ GiuMarket</h3>
+                <p>Tu tienda online de confianza con los mejores productos al mejor precio.</p>
+            </div>
+            <div class="footer-section">
+                <h3>📞 Contacto</h3>
+                <ul>
+                    <li><a href="#">📧 info@giumarket.com</a></li>
+                    <li><a href="#">📱 +1 234 567 890</a></li>
+                    <li><a href="#">📍 Ubicación</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>🔗 Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="#" onclick="filtrarProductos('todos')">Todos los Productos</a></li>
+                    <li><a href="#" onclick="filtrarProductos('ofertas')">Ofertas</a></li>
+                    <li><a href="#">Sobre Nosotros</a></li>
+                    <li><a href="#">Ayuda</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>💳 Métodos de Pago</h3>
+                <div class="payment-methods">
+                    <span>💳 Tarjetas</span>
+                    <span>📱 PayPal</span>
+                    <span>💰 Efectivo</span>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2024 GiuMarket. Todos los derechos reservados.
+        </div>
+    </footer>
 
-    <script>
-        // Funcionalidad básica
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', function() {
-                const productName = this.parentElement.querySelector('h3').textContent;
-                alert('✅ "' + productName + '" agregado al carrito!');
-            });
-        });
+    <!-- Botón flotante para agregar productos -->
+    <button class="floating-btn" id="add-product-btn" title="Agregar nuevo producto">➕</button>
 
-        document.querySelector('.floating-btn').addEventListener('click', function() {
-            alert('➕ Aquí puedes agregar nuevos productos!');
-        });
-    </script>
+    <!-- Scripts -->
+    <script src="script.js"></script>
 </body>
 </html>
